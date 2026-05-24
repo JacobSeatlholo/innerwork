@@ -12,6 +12,7 @@ const clientNav = [
   { href: '/dashboard/client/closure', label: 'Closure Letters', icon: '💌' },
   { href: '/dashboard/couples/space', label: 'Couples Space', icon: '👥' },
   { href: '/dashboard/couples/tasks', label: 'Partner Tasks', icon: '🤝' },
+  { href: '/dashboard/exercises', label: 'Home Exercises', icon: '🌬️' },
 ]
 
 const practitionerNav = [

@@ -1,143 +1,160 @@
+'use client'
 import Link from 'next/link'
 
 const features = [
-  { icon: '🌿', title: 'Accountability Tools', desc: 'Guided frameworks to own your patterns and commit to meaningful change.' },
-  { icon: '💌', title: 'Closure Letters', desc: 'Write what was never said. Heal through words — to others, or to yourself.' },
-  { icon: '👥', title: 'Couples Space', desc: 'Shared check-ins, conflict maps, and guided tasks for partners to grow together.' },
-  { icon: '📓', title: 'Reflective Journaling', desc: 'Therapeutic prompts to help you understand your inner emotional landscape.' },
-  { icon: '🧭', title: 'Attachment Assessment', desc: 'Understand how you connect, and why — with a personalised healing pathway.' },
-  { icon: '📅', title: 'Session Booking', desc: 'Book face-to-face or virtual sessions with Gabonewe directly on the platform.' },
+  { icon: '🌬️', title: 'Breathwork & Grounding', desc: 'Guided breathing and sensory exercises to calm your nervous system instantly.', color: '#f0f7f4', border: '#b3dbcd', text: '#186b52' },
+  { icon: '📓', title: 'Reflection Journals', desc: 'Therapeutic prompts for accountability, closure, self-discovery and gratitude.', color: '#f5f3ff', border: '#c4b5fd', text: '#6d28d9' },
+  { icon: '🧭', title: 'Attachment Assessment', desc: 'Understand how you connect — and receive a personalised healing pathway.', color: '#fffbeb', border: '#fcd34d', text: '#92400e' },
+  { icon: '💌', title: 'Closure Letters', desc: 'Say what was never said. 7 formats — from forgiveness to boundary statements.', color: '#fdf2f8', border: '#f9a8d4', text: '#9d174d' },
+  { icon: '👥', title: 'Couples Space', desc: 'Shared check-ins, conflict mapping, and therapeutic exercises for partners.', color: '#eff6ff', border: '#93c5fd', text: '#1d4ed8' },
+  { icon: '📅', title: 'Session Booking', desc: 'Book face-to-face or virtual sessions with Gabonewe directly.', color: '#f0fdf4', border: '#86efac', text: '#166534' },
 ]
 
-const pillars = [
-  { num: '01', title: 'Understand', desc: 'Uncover the emotional patterns shaping your relationships and decisions.' },
-  { num: '02', title: 'Reflect', desc: 'Journal, assess, and map your inner world with guided therapeutic tools.' },
-  { num: '03', title: 'Act', desc: 'Complete accountability tasks, write closure letters, and build new patterns.' },
-  { num: '04', title: 'Heal', desc: 'Track progress, share with your practitioner, and sustain lasting change.' },
+const emotions = ['Anxiety', 'Burnout', 'Grief', 'Anger', 'Shame', 'Loneliness', 'Numbness', 'Overwhelm', 'Fear', 'Confusion', 'Avoidance', 'Heartbreak']
+
+const testimonials = [
+  { quote: 'I finally understood why I keep repeating the same patterns in relationships. The attachment assessment alone changed everything.', name: 'Client — Individual therapy', emoji: '🌿' },
+  { quote: 'The couples check-in tools helped us have conversations we\'d been avoiding for years. We finally felt heard by each other.', name: 'Client — Couples session', emoji: '💛' },
+  { quote: 'The exercises at home between sessions kept me grounded. I actually looked forward to the body scan every evening.', name: 'Client — Ongoing support', emoji: '🌸' },
 ]
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div style={{ minHeight: '100vh', background: 'white', fontFamily: '"DM Sans", system-ui, sans-serif' }}>
+
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-sand-100">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-sage-600 flex items-center justify-center text-white text-sm font-display font-bold">G</div>
+      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50, background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #f0f0ec' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #1D9E75, #186b52)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontFamily: '"Playfair Display", serif', fontWeight: 700, fontSize: '16px' }}>G</div>
             <div>
-              <div className="text-sm font-semibold text-sand-900 leading-none">InnerWork</div>
-              <div className="text-xs text-sand-400 leading-none">by Gabonewe</div>
+              <div style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a18', lineHeight: 1 }}>InnerWork</div>
+              <div style={{ fontSize: '11px', color: '#afa99a', lineHeight: 1 }}>by Gabonewe</div>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/auth/login" className="text-sm text-sand-600 hover:text-sand-900 transition-colors px-4 py-2">Sign in</Link>
-            <Link href="/auth/signup" className="btn-primary text-sm py-2">Get started</Link>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <Link href="/auth/login" style={{ fontSize: '14px', color: '#8e887a', textDecoration: 'none', padding: '8px 16px' }}>Sign in</Link>
+            <Link href="/auth/signup" className="btn-primary" style={{ fontSize: '13px', padding: '8px 20px' }}>Get started</Link>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-sage-950 via-sage-900 to-sage-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle at 30% 50%, #1D9E75 0%, transparent 50%), radial-gradient(circle at 80% 20%, #5DCAA5 0%, transparent 40%)'}} />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-sage-800/60 border border-sage-700 text-sage-300 text-xs font-medium px-4 py-2 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-sage-400 animate-pulse" />
+      <section style={{ paddingTop: '100px', paddingBottom: '80px', background: 'linear-gradient(160deg, #0a2a1e 0%, #0d3d2b 50%, #1a5c40 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '10%', left: '5%', width: '300px', height: '300px', borderRadius: '50%', background: 'radial-gradient(circle, #1D9E7520 0%, transparent 70%)' }} />
+        <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: '200px', height: '200px', borderRadius: '50%', background: 'radial-gradient(circle, #5DCAA520 0%, transparent 70%)' }} />
+
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(29,158,117,0.2)', border: '1px solid rgba(29,158,117,0.4)', color: '#9FE1CB', fontSize: '12px', fontWeight: 500, padding: '6px 16px', borderRadius: '20px', marginBottom: '2rem' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#5DCAA5', display: 'inline-block' }} />
             SA&apos;s Leading Trauma-Informed Wellness Platform
           </div>
-          <h1 className="font-display text-5xl md:text-6xl text-white leading-tight mb-6 text-balance">
+
+          <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: 'white', lineHeight: 1.2, marginBottom: '1.5rem' }}>
             People can only meet others<br />
-            <span className="text-sage-400 italic">as deeply as they&apos;ve met themselves.</span>
+            <em style={{ color: '#5DCAA5' }}>as deeply as they&apos;ve met themselves.</em>
           </h1>
-          <p className="text-sage-200 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            InnerWork is your sanctuary for emotional clarity — a therapeutic platform for accountability, closure, 
-            and relational healing, built with the clinical depth of Gabonewe Projects.
+
+          <p style={{ color: '#9FE1CB', fontSize: '17px', lineHeight: 1.7, maxWidth: '600px', margin: '0 auto 2.5rem' }}>
+            InnerWork is your sanctuary for emotional clarity — a therapeutic platform for accountability, 
+            closure, and relational healing, built with the clinical depth of Gabonewe Projects.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/auth/signup" className="btn-primary px-8 py-3 text-base">
-              Begin your inner work →
-            </Link>
-            <Link href="/auth/login" className="text-sage-300 hover:text-white transition-colors text-sm px-4 py-3">
-              Already a client? Sign in
-            </Link>
+
+          {/* Floating emotion pills */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center', marginBottom: '2.5rem', maxWidth: '600px', margin: '0 auto 2.5rem' }}>
+            {emotions.map((e, i) => (
+              <span key={e} style={{ fontSize: '12px', padding: '5px 12px', borderRadius: '20px', background: `rgba(29,158,117,${0.1 + (i % 3) * 0.05})`, border: '1px solid rgba(93,202,165,0.25)', color: '#9FE1CB' }}>{e}</span>
+            ))}
           </div>
-          <div className="mt-12 flex items-center justify-center gap-8 text-xs text-sage-500">
-            <span>SACSSP No: 10-20383</span>
-            <span>•</span>
-            <span>Practice: 0987034</span>
-            <span>•</span>
-            <span>Clinically informed</span>
+
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/auth/signup" className="btn-primary" style={{ fontSize: '16px', padding: '14px 32px' }}>Begin your inner work →</Link>
+            <Link href="/auth/login" style={{ color: '#9FE1CB', fontSize: '14px', padding: '14px 20px', textDecoration: 'none' }}>Already a client? Sign in</Link>
+          </div>
+
+          <div style={{ marginTop: '3rem', display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {['SACSSP No: 10-20383', 'Practice: 0987034', 'Clinically informed', 'Trauma-aware'].map(t => (
+              <span key={t} style={{ fontSize: '11px', color: '#4da586' }}>{t}</span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Pillars */}
-      <section className="py-20 px-6 bg-sand-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-sage-600 text-xs font-medium uppercase tracking-widest mb-3">The framework</p>
-            <h2 className="font-display text-3xl text-sand-900">How InnerWork guides you</h2>
+      {/* Coloured feature strip */}
+      <section style={{ padding: '80px 1.5rem', background: '#fafaf8' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ color: '#1D9E75', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Everything you need</p>
+            <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2.2rem', color: '#1a1a18', marginBottom: '0.75rem' }}>Your complete healing toolkit</h2>
+            <p style={{ color: '#8e887a', fontSize: '15px', maxWidth: '500px', margin: '0 auto', lineHeight: 1.6 }}>Designed for individuals, couples, and the practitioners who support them.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {pillars.map((p) => (
-              <div key={p.num} className="text-center">
-                <div className="text-3xl font-display text-sage-200 mb-2">{p.num}</div>
-                <h3 className="font-display text-lg text-sand-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-sand-500 leading-relaxed">{p.desc}</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+            {features.map(f => (
+              <div key={f.title} style={{ background: f.color, border: `1.5px solid ${f.border}`, borderRadius: '16px', padding: '1.5rem', transition: 'transform 0.2s' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'}>
+                <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{f.icon}</div>
+                <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.1rem', color: '#1a1a18', marginBottom: '0.5rem' }}>{f.title}</h3>
+                <p style={{ fontSize: '13px', color: '#706b5f', lineHeight: 1.6 }}>{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-sage-600 text-xs font-medium uppercase tracking-widest mb-3">What&apos;s inside</p>
-            <h2 className="font-display text-3xl text-sand-900">Everything you need to heal and grow</h2>
-            <p className="text-sand-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
-              Designed for individuals, couples, and the practitioners who support them.
+      {/* Exercises callout */}
+      <section style={{ padding: '80px 1.5rem', background: 'linear-gradient(135deg, #1D9E75 0%, #0d3d2b 100%)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+          <div>
+            <p style={{ color: '#9FE1CB', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Do the work at home</p>
+            <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2rem', color: 'white', marginBottom: '1rem', lineHeight: 1.3 }}>10 healing exercises — no appointment needed</h2>
+            <p style={{ color: '#9FE1CB', fontSize: '14px', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+              Box breathing. Body scans. Mirror work. Anger release. Inner child letters. 
+              Clinically informed practices you can do in your living room, right now.
             </p>
+            <Link href="/auth/signup" className="btn-primary" style={{ background: 'white', color: '#1D9E75', fontSize: '14px' }}>Access all exercises →</Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="card-hover p-6">
-                <div className="text-2xl mb-4">{f.icon}</div>
-                <h3 className="font-semibold text-sand-900 mb-2">{f.title}</h3>
-                <p className="text-sm text-sand-500 leading-relaxed">{f.desc}</p>
-              </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            {['🌬️ Box Breathing', '🧘 Body Scan', '🪞 Mirror Work', '🔥 Anger Release', '💌 Unsent Letter', '🌸 Gratitude', '🧒 Inner Child', '👁️ Grounding'].map(ex => (
+              <div key={ex} style={{ background: 'rgba(255,255,255,0.12)', borderRadius: '12px', padding: '12px', fontSize: '13px', color: 'white', border: '1px solid rgba(255,255,255,0.15)' }}>{ex}</div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Quote */}
-      <section className="py-20 px-6 bg-sage-950 text-white">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="text-sage-600 font-display text-5xl mb-4">&ldquo;</div>
-          <p className="font-display text-2xl md:text-3xl text-white leading-relaxed mb-6">
-            Our mission is not just to talk about change —<br className="hidden md:block" />
-            <span className="text-sage-400"> we equip you with the tools to make it happen.</span>
-          </p>
-          <p className="text-sage-500 text-sm">Gabonewe Projects — Trusted corporate wellness facilitator</p>
+      {/* Testimonials */}
+      <section style={{ padding: '80px 1.5rem', background: 'white' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ color: '#1D9E75', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>From our community</p>
+            <h2 style={{ fontFamily: '"Playfair Display", serif', fontSize: '2rem', color: '#1a1a18' }}>What healing sounds like</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+            {testimonials.map((t, i) => (
+              <div key={i} style={{ background: i === 0 ? '#f0f7f4' : i === 1 ? '#fffbeb' : '#fdf2f8', borderRadius: '16px', padding: '1.5rem', border: `1px solid ${i === 0 ? '#b3dbcd' : i === 1 ? '#fcd34d' : '#f9a8d4'}` }}>
+                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>{t.emoji}</div>
+                <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '15px', color: '#1a1a18', lineHeight: 1.7, fontStyle: 'italic', marginBottom: '1rem' }}>&ldquo;{t.quote}&rdquo;</p>
+                <p style={{ fontSize: '12px', color: '#8e887a', fontWeight: 500 }}>— {t.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-display text-3xl text-sand-900 mb-4">Ready to begin?</h2>
-          <p className="text-sand-500 text-sm leading-relaxed mb-8">
-            Join individuals and couples who are doing the deep work —<br />
-            building healthier relationships, one honest conversation at a time.
+      <section style={{ padding: '80px 1.5rem', background: '#0a2a1e', textAlign: 'center' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <div style={{ fontSize: '3rem', fontFamily: '"Playfair Display", serif', color: '#1D9E75', marginBottom: '0.5rem' }}>&ldquo;</div>
+          <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.6rem', color: 'white', lineHeight: 1.5, marginBottom: '0.75rem' }}>
+            Our mission is not just to talk about change —
+            <span style={{ color: '#5DCAA5' }}> we equip you with the tools to make it happen.</span>
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/signup" className="btn-primary px-8 py-3 text-base text-center">Create your account</Link>
-            <a href="tel:+27725778419" className="btn-secondary px-8 py-3 text-base text-center">Call +27 72 577 8419</a>
+          <p style={{ color: '#4da586', fontSize: '13px', marginBottom: '2.5rem' }}>Gabonewe Projects · Trusted corporate wellness facilitator</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/auth/signup" className="btn-primary" style={{ fontSize: '15px', padding: '14px 32px' }}>Create your account</Link>
+            <a href="tel:+27725778419" style={{ color: '#9FE1CB', fontSize: '14px', padding: '14px 20px', textDecoration: 'none', border: '1px solid rgba(93,202,165,0.3)', borderRadius: '12px' }}>+27 72 577 8419</a>
           </div>
-          <p className="text-xs text-sand-400 mt-6">
-            therapy@app.businesshustle.co.za · Wheelchair accessible · Designed by BusinessHustle
-          </p>
+          <p style={{ color: '#2e8a6c', fontSize: '12px', marginTop: '2rem' }}>therapy@app.businesshustle.co.za · Wheelchair accessible · Designed by BusinessHustle</p>
         </div>
       </section>
     </div>
