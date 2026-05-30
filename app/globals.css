@@ -241,3 +241,178 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight:
 .animate-slide-up { animation: slideUp 0.5s cubic-bezier(0.4,0,0.2,1) both; }
 .animate-fade { animation: fadeIn 0.4s ease both; }
 .animate-pulse { animation: pulse 2s ease infinite; }
+
+/* ============================================
+   RESPONSIVE SYSTEM
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Grid system */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+.grid-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center; }
+.grid-platform { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+
+/* Flex helpers */
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-wrap { display: flex; flex-wrap: wrap; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+
+/* Section spacing */
+.section { padding: 5rem 1.25rem; }
+.section-sm { padding: 3rem 1.25rem; }
+
+/* Nav */
+.nav-fixed {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #e8e4dc;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 1.25rem;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+
+/* Logo sizing — responsive */
+.logo-img-nav { width: 56px; height: 56px; object-fit: contain; }
+.logo-img-hero { width: 120px; height: 120px; object-fit: contain; }
+.logo-img-section { width: 80px; height: 80px; object-fit: contain; }
+.logo-img-auth { width: 100px; height: 100px; object-fit: contain; }
+.logo-img-sidebar { width: 44px; height: 44px; object-fit: contain; }
+
+/* Hero section */
+.hero-section {
+  padding-top: 72px;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0a2a1e 0%, #0d3d2b 50%, #155743 100%);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+/* Cards */
+.tool-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 1.25rem;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s;
+}
+.tool-card:hover { background: rgba(255,255,255,0.11); }
+
+.feature-card {
+  border-radius: 20px;
+  padding: 1.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+
+/* Dashboard stats grid */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.875rem; }
+
+/* Mobile nav for dashboard */
+.dash-sidebar {
+  position: fixed; inset-block: 0; left: 0; z-index: 40;
+  width: 240px; background: white;
+  border-right: 1px solid #e8e4dc;
+  display: flex; flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ============================================
+   MOBILE BREAKPOINTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container { padding: 0 1rem; }
+  .section { padding: 3rem 1rem; }
+  .section-sm { padding: 2rem 1rem; }
+
+  /* Grids → single column on mobile */
+  .grid-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+  .grid-platform { grid-template-columns: 1fr; gap: 2rem; }
+  .grid-2 { grid-template-columns: 1fr; gap: 1rem; }
+  .grid-3 { grid-template-columns: 1fr; gap: 1rem; }
+  .grid-4 { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .grid-auto { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* Stats & quick actions → 2 col on mobile */
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .quick-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+  /* Nav */
+  .nav-inner { height: 64px; }
+  .nav-hide-mobile { display: none !important; }
+
+  /* Logo sizes on mobile */
+  .logo-img-nav { width: 40px; height: 40px; }
+  .logo-img-hero { width: 72px; height: 72px; }
+  .logo-img-section { width: 56px; height: 56px; }
+  .logo-img-auth { width: 72px; height: 72px; }
+
+  /* Hero text */
+  .hero-h1 { font-size: 2.4rem !important; }
+  .hero-sub { font-size: 15px !important; }
+
+  /* Buttons full width on mobile */
+  .btn-group { flex-direction: column; gap: 10px; }
+  .btn-group a, .btn-group button { width: 100%; text-align: center; }
+
+  /* Dashboard sidebar hidden by default on mobile */
+  .dash-sidebar { transform: translateX(-100%); }
+  .dash-sidebar.open { transform: translateX(0); }
+  .dash-main { margin-left: 0 !important; }
+  .dash-main-inner { padding: 1rem !important; }
+
+  /* Cards on mobile */
+  .feature-card { padding: 1.25rem; }
+  .stat-card { padding: 1rem; }
+
+  /* Tool cards 2-col on mobile */
+  .tools-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* Hero service cards 2-col */
+  .hero-cards { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* Typography adjustments */
+  .section-h2 { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+
+  /* Hide decorative elements */
+  .deco { display: none; }
+
+  /* Process steps → vertical */
+  .steps-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  .steps-line { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .hero-h1 { font-size: 2rem !important; }
+  .hero-service-cards { display: none !important; } /* hide on very small — too cramped */
+  
+  /* Full-width buttons */
+  .btn-primary, .btn-secondary { width: 100%; display: block; text-align: center; }
+}
+
+@media (min-width: 769px) {
+  .dash-sidebar { transform: translateX(0) !important; position: sticky !important; top: 0 !important; height: 100vh !important; }
+  .dash-main { margin-left: 0 !important; }
+  .menu-btn { display: none !important; }
+}
