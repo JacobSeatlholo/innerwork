@@ -1,79 +1,73 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
 
 export default function LoginPage() {
-  const router = useRouter()
-  const supabase = createClient()
   const [mode, setMode] = useState<'password' | 'magic'>('password')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
 
-  async function handlePasswordLogin(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true); setError('')
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) setError(error.message)
-    else router.push('/dashboard/client')
-    setLoading(false)
-  }
-
-  async function handleMagicLink(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true); setError('')
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: `${window.location.origin}/dashboard/client` }
-    })
-    if (error) setError(error.message)
-    else setMessage('Check your email for a sign-in link.')
+    setLoading(true)
+    // Simulate — full auth activates when Supabase is connected
+    await new Promise(r => setTimeout(r, 800))
+    setMessage('Auth coming soon — the full platform is being set up. In the meantime, explore the demo below.')
     setLoading(false)
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sage-950 to-sage-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-full bg-sage-600 flex items-center justify-center text-white font-display font-bold text-lg">G</div>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0a2a1e, #0d3d2b)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', fontFamily: '"DM Sans", system-ui, sans-serif' }}>
+      <div style={{ width: '100%', maxWidth: '360px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '1.5rem' }}>
+            <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: '#1D9E75', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontFamily: '"Playfair Display", serif', fontWeight: 700, fontSize: '20px' }}>G</div>
           </Link>
-          <h1 className="font-display text-2xl text-white mb-1">Welcome back</h1>
-          <p className="text-sage-400 text-sm">Continue your inner work</p>
+          <h1 style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.75rem', color: 'white', marginBottom: '0.25rem' }}>Welcome back</h1>
+          <p style={{ color: '#9FE1CB', fontSize: '14px' }}>Continue your inner work</p>
         </div>
 
-        <div className="card p-6">
-          <div className="flex gap-2 mb-6 bg-sand-100 p-1 rounded-lg">
-            <button onClick={() => setMode('password')} className={`flex-1 py-1.5 rounded-md text-sm font-medium transition-all ${mode === 'password' ? 'bg-white shadow-sm text-sand-900' : 'text-sand-500'}`}>Password</button>
-            <button onClick={() => setMode('magic')} className={`flex-1 py-1.5 rounded-md text-sm font-medium transition-all ${mode === 'magic' ? 'bg-white shadow-sm text-sand-900' : 'text-sand-500'}`}>Magic link</button>
+        <div style={{ background: 'white', borderRadius: '20px', padding: '1.75rem' }}>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '1.5rem', background: '#f5f3ef', padding: '4px', borderRadius: '10px' }}>
+            {(['password', 'magic'] as const).map(m => (
+              <button key={m} onClick={() => setMode(m)} style={{ flex: 1, padding: '8px', borderRadius: '7px', border: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 500, background: mode === m ? 'white' : 'transparent', color: mode === m ? '#1a1a18' : '#8e887a', boxShadow: mode === m ? '0 1px 3px rgba(0,0,0,0.1)' : 'none', transition: 'all 0.15s', fontFamily: 'inherit' }}>
+                {m === 'password' ? 'Password' : 'Magic link'}
+              </button>
+            ))}
           </div>
 
-          <form onSubmit={mode === 'password' ? handlePasswordLogin : handleMagicLink} className="space-y-4">
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
               <label className="label">Email</label>
-              <input type="email" className="input" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
+              <input className="input" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
             </div>
             {mode === 'password' && (
               <div>
                 <label className="label">Password</label>
-                <input type="password" className="input" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
+                <input className="input" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
               </div>
             )}
-            {error && <p className="text-red-600 text-sm bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
-            {message && <p className="text-sage-700 text-sm bg-sage-50 px-3 py-2 rounded-lg border border-sage-200">{message}</p>}
-            <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+            {message && (
+              <div style={{ background: '#f0f7f4', border: '1px solid #b3dbcd', borderRadius: '10px', padding: '12px', fontSize: '13px', color: '#186b52', lineHeight: 1.5 }}>{message}</div>
+            )}
+            <button type="submit" disabled={loading} className="btn-primary" style={{ width: '100%', padding: '13px', fontSize: '15px' }}>
               {loading ? 'Please wait…' : mode === 'password' ? 'Sign in' : 'Send magic link'}
             </button>
           </form>
+
+          <div style={{ marginTop: '1.25rem', padding: '1rem', background: '#fffbeb', borderRadius: '10px', border: '1px solid #fcd34d' }}>
+            <p style={{ fontSize: '12px', color: '#92400e', lineHeight: 1.6, margin: 0 }}>
+              <strong>Demo mode:</strong> Explore all tools freely. Full accounts activate soon. 
+              <Link href="/dashboard/client" style={{ color: '#1D9E75', fontWeight: 600, display: 'block', marginTop: '6px' }}>→ Enter demo dashboard</Link>
+            </p>
+          </div>
         </div>
 
-        <p className="text-center text-sage-400 text-sm mt-6">
-          New to InnerWork?{' '}
-          <Link href="/auth/signup" className="text-sage-300 hover:text-white underline transition-colors">Create account</Link>
+        <p style={{ textAlign: 'center', color: '#9FE1CB', fontSize: '14px', marginTop: '1.5rem' }}>
+          New here?{' '}
+          <Link href="/auth/signup" style={{ color: '#5DCAA5', textDecoration: 'underline' }}>Create account</Link>
         </p>
       </div>
     </div>
