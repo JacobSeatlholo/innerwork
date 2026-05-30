@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const clientNav = [
@@ -45,7 +46,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div style={{ padding: '1.25rem 1.25rem', borderBottom: '1px solid #f0ede8' }}>
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
             <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'linear-gradient(135deg, #1D9E75, #0d3d2b)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(29,158,117,0.3)' }}>
-              <span style={{ color: 'white', fontSize: '17px', fontFamily: 'Cormorant Garamond, serif', fontWeight: 700 }}>G</span>
+              <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={32} height={32} style={{ objectFit: 'contain' }} />
             </div>
             <div>
               <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '15px', fontWeight: 700, color: '#1a1a18', lineHeight: 1, letterSpacing: '0.04em' }}>GABONEWE</div>
