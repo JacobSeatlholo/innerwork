@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { LanguageSelector, useTranslation } from '@/components/Translator'
 
 const services = [
-  { num: '01', title: 'Psychosocial Support', sub: "SA's Leading Trauma-Informed Recovery", desc: 'Face-to-face counselling for depression, anxiety, trauma, bereavement, substance abuse, chronic illness, family & marriage counselling.', icon: '🫶', color: '#f0f7f4', border: '#b3dbcd', accent: '#1D9E75' },
-  { num: '02', title: 'Training', sub: 'Organisational Effectiveness', desc: 'Bespoke programmes with practical skills, industry relevance, and innovative teaching methods that enhance workforce capabilities.', icon: '🎓', color: '#f5f3ff', border: '#c4b5fd', accent: '#6d28d9' },
-  { num: '03', title: 'Coaching', sub: 'The Leadership Mindset Reset', desc: 'Art and science of leadership, business transformation, and growth with seasoned professionals and thought leaders.', icon: '🧭', color: '#fffbeb', border: '#fcd34d', accent: '#92400e' },
-  { num: '04', title: 'Programme Management', sub: 'Turnkey Wellness Programs', desc: 'World-class facilitation and planning services to help clients develop and maintain their project plans.', icon: '📋', color: '#fdf2f8', border: '#f9a8d4', accent: '#9d174d' },
+  { num: '01', title: 'Psychosocial Support', sub: "SA's Leading Trauma-Informed Recovery", desc: 'Face-to-face counselling for depression, anxiety, trauma, bereavement, substance abuse, chronic illness, family & marriage counselling.', color: '#f0f7f4', border: '#b3dbcd', accent: '#1D9E75' },
+  { num: '02', title: 'Training', sub: 'Organisational Effectiveness', desc: 'Bespoke programmes with practical skills, industry relevance, and innovative teaching methods that enhance workforce capabilities.', color: '#f5f3ff', border: '#c4b5fd', accent: '#6d28d9' },
+  { num: '03', title: 'Coaching', sub: 'The Leadership Mindset Reset', desc: 'Art and science of leadership, business transformation, and growth with seasoned professionals and thought leaders.', color: '#fffbeb', border: '#fcd34d', accent: '#92400e' },
+  { num: '04', title: 'Programme Management', sub: 'Turnkey Wellness Programs', desc: 'World-class facilitation and planning services to help clients develop and maintain their project plans.', color: '#fdf2f8', border: '#f9a8d4', accent: '#9d174d' },
 ]
 
 const tools = [
@@ -100,7 +100,6 @@ export default function LandingPage() {
             <div className="hero-cards" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               {services.map((s, i) => (
                 <div key={s.num} style={{ background: 'rgba(255,255,255,0.07)', borderRadius: '18px', border: '1px solid rgba(255,255,255,0.11)', padding: '1.1rem', backdropFilter: 'blur(10px)', animation: `slideUp 0.5s ease ${i * 0.1}s both` }}>
-                  <div style={{ fontSize: '1.5rem', marginBottom: '0.4rem' }}>{s.icon}</div>
                   <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', fontWeight: 700, color: 'rgba(255,255,255,0.1)', lineHeight: 1 }}>{s.num}</div>
                   <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '13px', fontWeight: 600, color: 'white', lineHeight: 1.3, marginTop: '2px' }}>{s.title}</p>
                   <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '11px', color: '#9FE1CB', lineHeight: 1.4, fontWeight: 300 }}>{s.sub}</p>
@@ -147,7 +146,6 @@ export default function LandingPage() {
               <div key={s.num} className="feature-card" style={{ background: s.color, border: `1.5px solid ${s.border}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                   <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.8rem', fontWeight: 700, color: s.accent, opacity: 0.18, lineHeight: 1 }}>{s.num}</span>
-                  <span style={{ fontSize: '2rem' }}>{s.icon}</span>
                 </div>
                 <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 600, color: '#1a1a18', marginBottom: '4px' }}>{s.title}</h3>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '10px', fontWeight: 700, color: s.accent, marginBottom: '0.75rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{s.sub}</p>
@@ -214,7 +212,6 @@ export default function LandingPage() {
             {steps.map((s) => (
               <div key={s.label} style={{ position: 'relative', zIndex: 1 }}>
                 <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'linear-gradient(135deg, #1D9E75, #186b52)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', fontSize: '1.75rem', boxShadow: '0 8px 24px rgba(29,158,117,0.3)' }}>
-                  {s.icon}
                 </div>
                 <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', fontWeight: 600, color: '#1a1a18', marginBottom: '6px' }}>{s.label}</h3>
                 <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '13px', color: '#706b5f' }}>{s.desc}</p>
