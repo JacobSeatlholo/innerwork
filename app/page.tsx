@@ -28,10 +28,10 @@ export default function LandingPage() {
 
       {/* Nav */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(255,255,255,0.96)', backdropFilter: 'blur(20px)', borderBottom: '1px solid #e8e4dc' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', height: '70px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
           {/* Real logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <Image src="/gabonewe-logo.svg" alt="Gabonewe Projects Logo" width={48} height={48} style={{ objectFit: 'contain' }} />
+            <Image src="/gabonewe-logo.svg" alt="Gabonewe Projects Logo" width={160} height={160} style={{ objectFit: 'contain' }} />
             <div>
               <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '16px', fontWeight: 700, color: '#1a1a18', lineHeight: 1, letterSpacing: '0.03em' }}>Gabonewe Projects</div>
               <div style={{ fontFamily: 'Jost, sans-serif', fontSize: '10px', color: '#1D9E75', lineHeight: 1, fontWeight: 600, letterSpacing: '0.12em', marginTop: '2px' }}>EMOTIONAL CLARITY & HEALING</div>
@@ -62,7 +62,7 @@ export default function LandingPage() {
 
               {/* Logo in hero */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '1.5rem' }}>
-                <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={70} height={70} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
+                <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={200} height={200} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }} />
                 <div>
                   <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#9FE1CB', fontWeight: 400, letterSpacing: '0.05em' }}>Gabonewe Projects</p>
                   <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '10px', color: '#5DCAA5', fontWeight: 600, letterSpacing: '0.15em' }}>INNERWORK PLATFORM</p>
@@ -113,7 +113,7 @@ export default function LandingPage() {
       <section style={{ background: '#fafaf8', padding: '5rem 2rem', borderBottom: '1px solid #e8e4dc' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={60} height={60} style={{ objectFit: 'contain', opacity: 0.7 }} />
+            <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={180} height={180} style={{ objectFit: 'contain', opacity: 0.7 }} />
           </div>
           <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '11px', fontWeight: 700, color: '#1D9E75', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1rem' }}>{t('about_us')}</p>
           <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.6rem, 3vw, 2.6rem)', color: '#1a1a18', marginBottom: '1.25rem', fontWeight: 600, lineHeight: 1.3 }}>
@@ -156,7 +156,7 @@ export default function LandingPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'center' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
-                <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={44} height={44} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }} />
+                <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={140} height={140} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }} />
                 <div>
                   <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '10px', fontWeight: 700, color: '#5DCAA5', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Introducing</p>
                   <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '18px', color: 'white', fontWeight: 600 }}>InnerWork Platform</p>
@@ -199,7 +199,7 @@ export default function LandingPage() {
       <section style={{ padding: '5rem 2rem', background: '#0a2a1e', textAlign: 'center' }}>
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={56} height={56} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.7 }} />
+            <Image src="/gabonewe-logo.svg" alt="Gabonewe" width={160} height={160} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.7 }} />
           </div>
           <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '4rem', color: '#1D9E75', lineHeight: 0.8, marginBottom: '1rem', opacity: 0.5 }}>&ldquo;</div>
           <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: 'white', lineHeight: 1.5, fontStyle: 'italic', fontWeight: 400, marginBottom: '0.5rem' }}>Our mission is not just to talk about change —</p>

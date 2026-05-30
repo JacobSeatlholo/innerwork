@@ -51,7 +51,7 @@ export default function LoginPage() {
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <Link href="/" style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: '14px', textDecoration: 'none' }}>
             <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}>
-              <Image src="/gabonewe-logo.svg" alt="Gabonewe Projects" width={56} height={56} style={{ objectFit: 'contain' }} />
+              <Image src="/gabonewe-logo.svg" alt="Gabonewe Projects" width={160} height={160} style={{ objectFit: 'contain' }} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '20px', fontWeight: 700, color: 'white', letterSpacing: '0.04em' }}>Gabonewe Projects</div>
