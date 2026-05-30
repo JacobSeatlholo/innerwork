@@ -2,28 +2,19 @@
 import Link from 'next/link'
 
 const moodOptions = [
-  { value: 1, emoji: '😔', label: 'Very low' },
-  { value: 3, emoji: '😕', label: 'Low' },
-  { value: 5, emoji: '😐', label: 'Neutral' },
-  { value: 7, emoji: '🙂', label: 'Good' },
-  { value: 9, emoji: '😊', label: 'Thriving' },
+  { value: 1, emoji: '😔', label: 'Very low', color: '#dbeafe' },
+  { value: 3, emoji: '😕', label: 'Low', color: '#e0e7ff' },
+  { value: 5, emoji: '😐', label: 'Okay', color: '#fef9c3' },
+  { value: 7, emoji: '🙂', label: 'Good', color: '#dcfce7' },
+  { value: 9, emoji: '😊', label: 'Thriving', color: '#f0f7f4' },
 ]
 
-const dailyPrompts = [
+const prompts = [
   'What emotion am I carrying today that I haven\'t fully named yet?',
-  'Where in my body do I feel tension, and what might it be holding?',
+  'Where in my body do I feel tension — and what might it be holding?',
   'What pattern am I repeating that I\'d like to shift?',
-  'What would I tell someone I love if they were feeling what I\'m feeling right now?',
+  'What would I tell someone I love if they felt what I\'m feeling right now?',
   'What does accountability mean to me in this season of my life?',
-]
-
-const quickActions = [
-  { href: '/dashboard/client/journal', icon: '📓', label: 'Write in journal', desc: 'Reflect & process' },
-  { href: '/dashboard/client/tasks', icon: '✅', label: 'View my tasks', desc: 'Accountability actions' },
-  { href: '/dashboard/client/assessment', icon: '🧭', label: 'Take assessment', desc: 'Know yourself deeper' },
-  { href: '/dashboard/client/closure', icon: '💌', label: 'Closure letter', desc: 'Write what was unsaid' },
-  { href: '/dashboard/couples/space', icon: '👥', label: 'Couples check-in', desc: 'Connect with partner' },
-  { href: '/dashboard/bookings', icon: '📅', label: 'Book a session', desc: 'With Gabonewe' },
 ]
 
 const affirmations = [
@@ -34,81 +25,92 @@ const affirmations = [
   'The work you do on yourself changes every relationship around you.',
 ]
 
+const quickActions = [
+  { href: '/dashboard/client/journal', icon: '📓', label: 'Write in journal', desc: 'Reflect & process', color: '#f5f3ff', border: '#c4b5fd' },
+  { href: '/dashboard/exercises', icon: '🌬️', label: 'Home exercises', desc: 'Calm your system', color: '#f0f7f4', border: '#b3dbcd' },
+  { href: '/dashboard/client/tasks', icon: '✅', label: 'My tasks', desc: 'Accountability actions', color: '#f0fdf4', border: '#86efac' },
+  { href: '/dashboard/client/assessment', icon: '🧭', label: 'Assessment', desc: 'Know yourself deeper', color: '#fffbeb', border: '#fcd34d' },
+  { href: '/dashboard/client/closure', icon: '💌', label: 'Closure letter', desc: 'Write what was unsaid', color: '#fdf2f8', border: '#f9a8d4' },
+  { href: '/dashboard/couples/space', icon: '👥', label: 'Couples check-in', desc: 'Connect with partner', color: '#eff6ff', border: '#93c5fd' },
+]
+
 export default function ClientDashboard() {
   const today = new Date()
   const dayIndex = today.getDay()
-  const prompt = dailyPrompts[dayIndex % dailyPrompts.length]
+  const prompt = prompts[dayIndex % prompts.length]
   const affirmation = affirmations[dayIndex % affirmations.length]
 
   return (
-    <div className="space-y-8 animate-slide-up">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }} className="animate-slide-up">
+
       {/* Header */}
-      <div className="flex items-start justify-between">
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <p className="text-sand-400 text-sm mb-1">{today.toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
-          <h1 className="font-display text-3xl text-sand-900">Welcome back.</h1>
-          <p className="text-sand-500 text-sm mt-1">How are you showing up for yourself today?</p>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '13px', color: '#afa99a', marginBottom: '4px' }}>
+            {today.toLocaleDateString('en-ZA', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
+          </p>
+          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.4rem', color: '#1a1a18', fontWeight: 600, lineHeight: 1.2, marginBottom: '4px' }}>Welcome back.</h1>
+          <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '15px', color: '#afa99a', fontWeight: 300 }}>How are you showing up for yourself today?</p>
         </div>
+        <Link href="/dashboard/bookings" className="btn-primary" style={{ fontSize: '13px' }}>+ Book a session</Link>
       </div>
 
-      {/* Affirmation */}
-      <div className="bg-gradient-to-br from-sage-950 to-sage-900 rounded-2xl p-6 text-white">
-        <p className="text-sage-400 text-xs uppercase tracking-widest font-medium mb-3">Today&apos;s affirmation</p>
-        <p className="font-display text-xl text-white leading-relaxed italic">&ldquo;{affirmation}&rdquo;</p>
+      {/* Affirmation hero */}
+      <div style={{ background: 'linear-gradient(135deg, #0a2a1e 0%, #0d3d2b 60%, #155743 100%)', borderRadius: '24px', padding: '2.5rem', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: '200px', height: '200px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(29,158,117,0.2) 0%, transparent 70%)' }} />
+        <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '11px', fontWeight: 700, color: '#5DCAA5', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Today&apos;s affirmation</p>
+        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', color: 'white', fontStyle: 'italic', lineHeight: 1.5, maxWidth: '600px', position: 'relative', zIndex: 1 }}>&ldquo;{affirmation}&rdquo;</p>
       </div>
 
       {/* Mood check-in */}
-      <div className="card p-6">
-        <h2 className="font-semibold text-sand-900 mb-1">How are you feeling right now?</h2>
-        <p className="text-sand-400 text-xs mb-4">A quick emotional check-in — no right answers.</p>
-        <div className="flex gap-3 flex-wrap">
+      <div className="card" style={{ padding: '1.75rem' }}>
+        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 600, color: '#1a1a18', marginBottom: '4px' }}>How are you feeling right now?</h2>
+        <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '13px', color: '#afa99a', marginBottom: '1.25rem' }}>A quick emotional check-in — no right answers.</p>
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           {moodOptions.map(m => (
-            <button key={m.value} className="flex flex-col items-center gap-1.5 p-3 rounded-xl border border-sand-200 hover:border-sage-300 hover:bg-sage-50 transition-all group">
-              <span className="text-2xl group-hover:scale-110 transition-transform">{m.emoji}</span>
-              <span className="text-xs text-sand-500 group-hover:text-sage-700">{m.label}</span>
+            <button key={m.value} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', padding: '1rem 1.25rem', borderRadius: '16px', border: '1.5px solid #e8e4dc', background: 'white', cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'Jost, sans-serif' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = m.color; (e.currentTarget as HTMLElement).style.borderColor = '#1D9E75'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'white'; (e.currentTarget as HTMLElement).style.borderColor = '#e8e4dc'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}>
+              <span style={{ fontSize: '2rem' }}>{m.emoji}</span>
+              <span style={{ fontSize: '12px', color: '#706b5f', fontWeight: 500 }}>{m.label}</span>
             </button>
           ))}
         </div>
       </div>
 
       {/* Daily prompt */}
-      <div className="card p-6 border-l-4 border-l-sage-500">
-        <p className="text-sage-600 text-xs font-medium uppercase tracking-widest mb-2">Today&apos;s reflection prompt</p>
-        <p className="font-display text-lg text-sand-800 leading-relaxed mb-4">&ldquo;{prompt}&rdquo;</p>
-        <Link href="/dashboard/client/journal" className="btn-secondary text-sm inline-flex items-center gap-2">
-          <span>📓</span> Write your reflection
-        </Link>
+      <div style={{ background: 'white', borderRadius: '20px', border: '1.5px solid #e8e4dc', borderLeft: '5px solid #1D9E75', padding: '1.75rem', boxShadow: '0 2px 8px rgba(10,42,30,0.06)' }}>
+        <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '11px', fontWeight: 700, color: '#1D9E75', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Today&apos;s reflection prompt</p>
+        <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#3d3d3a', lineHeight: 1.6, fontStyle: 'italic', marginBottom: '1.25rem' }}>&ldquo;{prompt}&rdquo;</p>
+        <Link href="/dashboard/client/journal" className="btn-secondary" style={{ fontSize: '13px' }}>📓 Write your reflection</Link>
       </div>
 
       {/* Quick actions */}
       <div>
-        <h2 className="font-semibold text-sand-900 mb-4">Your tools</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.6rem', fontWeight: 600, color: '#1a1a18', marginBottom: '1rem' }}>Your healing toolkit</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '14px' }}>
           {quickActions.map(a => (
-            <Link key={a.href} href={a.href} className="card-hover p-5 flex flex-col gap-2">
-              <span className="text-2xl">{a.icon}</span>
+            <Link key={a.href} href={a.href} style={{ background: a.color, border: `1.5px solid ${a.border}`, borderRadius: '18px', padding: '1.25rem', textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform 0.2s', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'}>
+              <span style={{ fontSize: '1.75rem' }}>{a.icon}</span>
               <div>
-                <p className="font-medium text-sand-900 text-sm">{a.label}</p>
-                <p className="text-xs text-sand-400">{a.desc}</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '14px', fontWeight: 600, color: '#1a1a18', marginBottom: '2px' }}>{a.label}</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '12px', color: '#706b5f' }}>{a.desc}</p>
               </div>
             </Link>
           ))}
         </div>
       </div>
 
-      {/* Progress snapshot */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { label: 'Journal entries', value: '0', icon: '📓' },
-          { label: 'Tasks completed', value: '0', icon: '✅' },
-          { label: 'Sessions attended', value: '0', icon: '📅' },
-          { label: 'Days journaling', value: '0', icon: '🔥' },
-        ].map(s => (
+      {/* Stats row */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '14px' }}>
+        {[{ label: 'Journal entries', value: '0', icon: '📓' }, { label: 'Tasks completed', value: '0', icon: '✅' }, { label: 'Sessions attended', value: '0', icon: '📅' }, { label: 'Days active', value: '1', icon: '🔥' }].map(s => (
           <div key={s.label} className="stat-card">
-            <span className="text-xl">{s.icon}</span>
+            <span style={{ fontSize: '1.5rem' }}>{s.icon}</span>
             <div>
-              <p className="text-2xl font-semibold text-sand-900">{s.value}</p>
-              <p className="text-xs text-sand-400">{s.label}</p>
+              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', fontWeight: 600, color: '#1a1a18', lineHeight: 1 }}>{s.value}</p>
+              <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '12px', color: '#afa99a', marginTop: '2px' }}>{s.label}</p>
             </div>
           </div>
         ))}
