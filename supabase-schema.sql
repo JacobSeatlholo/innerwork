@@ -244,3 +244,109 @@ CREATE INDEX idx_bookings_scheduled ON bookings(scheduled_at);
 CREATE INDEX idx_journal_user ON journal_entries(user_id);
 CREATE INDEX idx_tasks_assigned ON tasks(assigned_to);
 CREATE INDEX idx_emotional_user ON emotional_logs(user_id, logged_at);
+
+-- ============================================
+-- SEAFARER PSYCHOSOCIAL SUPPORT (Maritime)
+-- ============================================
+
+-- Seafarer daily emotional check-ins
+CREATE TABLE seafarer_checkins (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  mood INTEGER CHECK (mood BETWEEN 1 AND 10) NOT NULL,
+  sleep_quality INTEGER CHECK (sleep_quality BETWEEN 1 AND 10) NOT NULL,
+  connection_feeling INTEGER CHECK (connection_feeling BETWEEN 1 AND 10) NOT NULL,
+  isolation_level INTEGER CHECK (isolation_level BETWEEN 1 AND 10) NOT NULL,
+  current_challenge TEXT CHECK (current_challenge IN ('homesickness', 'isolation', 'fatigue', 'crew_conflict', 'work_pressure', 'family_worry', 'connectivity', 'none')),
+  notes TEXT,
+  contract_day INTEGER,
+  logged_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Critical incident logs (trauma support)
+CREATE TABLE incident_logs (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  incident_type TEXT CHECK (incident_type IN ('accident_injury', 'piracy_security', 'man_overboard', 'collision_grounding', 'cargo_enclosed_space', 'loss_of_colleague', 'abandonment', 'medical_emergency', 'near_miss', 'other')),
+  description TEXT NOT NULL,
+  occurred_on DATE,
+  immediate_response TEXT,
+  current_coping INTEGER CHECK (current_coping BETWEEN 1 AND 10),
+  shared_with_practitioner BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Memorial tributes (grief support)
+CREATE TABLE memorial_tributes (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  person_name TEXT NOT NULL,
+  vessel_name TEXT,
+  relationship TEXT CHECK (relationship IN ('crewmate', 'family', 'friend', 'colleague', 'other')),
+  birth_year INTEGER,
+  passing_year INTEGER,
+  message TEXT NOT NULL,
+  visible_to_crew BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Grief letters (grieving at sea / continuing bonds)
+CREATE TABLE grief_letters (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  memorial_id UUID REFERENCES memorial_tributes(id) ON DELETE SET NULL,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  letter_type TEXT CHECK (letter_type IN ('unfinished_conversation', 'goodbye', 'gratitude', 'anniversary', 'continuing_bonds')),
+  is_private BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Maritime wellbeing self-screens
+CREATE TABLE wellbeing_screens (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  responses JSONB NOT NULL,
+  score INTEGER NOT NULL,
+  band TEXT CHECK (band IN ('healthy', 'stressed', 'struggling', 'urgent')),
+  recommended_actions TEXT[],
+  completed_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Personal self-care plans (emotional support)
+CREATE TABLE self_care_plans (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+  plan_name TEXT NOT NULL,
+  daily_practices TEXT[],
+  weekly_practices TEXT[],
+  warning_signs TEXT[],
+  coping_strategies TEXT[],
+  support_contacts JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- RLS for seafarer tables
+ALTER TABLE seafarer_checkins ENABLE ROW LEVEL SECURITY;
+ALTER TABLE incident_logs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE memorial_tributes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE grief_letters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE wellbeing_screens ENABLE ROW LEVEL SECURITY;
+ALTER TABLE self_care_plans ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users manage own seafarer checkins" ON seafarer_checkins FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users manage own incident logs" ON incident_logs FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users manage own memorials" ON memorial_tributes FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Crew view public memorials" ON memorial_tributes FOR SELECT USING (visible_to_crew = TRUE);
+CREATE POLICY "Users manage own grief letters" ON grief_letters FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users manage own wellbeing screens" ON wellbeing_screens FOR ALL USING (user_id = auth.uid());
+CREATE POLICY "Users manage own self care plans" ON self_care_plans FOR ALL USING (user_id = auth.uid());
+
+-- Seafarer indexes
+CREATE INDEX idx_seafarer_checkins_user ON seafarer_checkins(user_id, logged_at);
+CREATE INDEX idx_incident_logs_user ON incident_logs(user_id, created_at);
+CREATE INDEX idx_memorials_public ON memorial_tributes(visible_to_crew, created_at);
+CREATE INDEX idx_grief_letters_user ON grief_letters(user_id, created_at);
+CREATE INDEX idx_wellbeing_screens_user ON wellbeing_screens(user_id, completed_at);
+CREATE INDEX idx_self_care_plans_user ON self_care_plans(user_id);

@@ -117,3 +117,91 @@ export interface EmotionalLog {
   triggers?: string[]
   logged_at: string
 }
+
+// ── Maritime / Seafarer Psychosocial Support ──
+export type SeafarerChallenge =
+  | 'homesickness' | 'isolation' | 'fatigue' | 'crew_conflict'
+  | 'work_pressure' | 'family_worry' | 'connectivity' | 'none'
+
+export type SeafarerRole = 'deck_crew' | 'engine_crew' | 'officer' | 'catering' | 'shore_management' | 'family_member' | 'other'
+
+export interface SeafarerCheckIn {
+  id: string
+  user_id: string
+  mood: number                     // 1-10
+  sleep_quality: number            // 1-10
+  connection_feeling: number       // 1-10 — felt connection to loved ones ashore
+  isolation_level: number          // 1-10 — higher means more isolated
+  current_challenge: SeafarerChallenge
+  notes?: string
+  contract_day?: number            // day number into current contract
+  logged_at: string
+}
+
+export type IncidentType =
+  | 'accident_injury' | 'piracy_security' | 'man_overboard' | 'collision_grounding'
+  | 'cargo_enclosed_space' | 'loss_of_colleague' | 'abandonment' | 'medical_emergency'
+  | 'near_miss' | 'other'
+
+export interface IncidentLog {
+  id: string
+  user_id: string
+  incident_type: IncidentType
+  description: string
+  occurred_on?: string
+  immediate_response?: string      // what helped in the moment
+  current_coping: number           // 1-10 — how well coping now
+  shared_with_practitioner: boolean
+  created_at: string
+}
+
+export interface MemorialTribute {
+  id: string
+  user_id: string
+  person_name: string
+  vessel_name?: string
+  relationship: 'crewmate' | 'family' | 'friend' | 'colleague' | 'other'
+  birth_year?: number
+  passing_year?: number
+  message: string                  // tribute text
+  visible_to_crew: boolean         // show on shared memorial wall vs private
+  created_at: string
+}
+
+export type GriefLetterType = 'unfinished_conversation' | 'goodbye' | 'gratitude' | 'anniversary' | 'continuing_bonds'
+
+export interface GriefLetter {
+  id: string
+  user_id: string
+  memorial_id?: string
+  title: string
+  content: string
+  letter_type: GriefLetterType
+  is_private: boolean
+  created_at: string
+}
+
+export type ScreenBand = 'healthy' | 'stressed' | 'struggling' | 'urgent'
+
+export interface WellbeingScreen {
+  id: string
+  user_id: string
+  responses: Record<string, number>
+  score: number
+  band: ScreenBand
+  recommended_actions: string[]
+  completed_at: string
+}
+
+export interface SelfCarePlan {
+  id: string
+  user_id: string
+  plan_name: string
+  daily_practices: string[]
+  weekly_practices: string[]
+  warning_signs: string[]
+  coping_strategies: string[]
+  support_contacts: { name: string; contact: string }[]
+  created_at: string
+  updated_at: string
+}

@@ -12,6 +12,7 @@ const clientNav = [
   { href: '/dashboard/client/assessment', label: 'Assessment', icon: '🧭' },
   { href: '/dashboard/client/closure', label: 'Closure Letters', icon: '💌' },
   { href: '/dashboard/couples/space', label: 'Couples Space', icon: '👥' },
+  { href: '/dashboard/seafarer', label: 'Seafarer Support', icon: '⚓' },
   { href: '/dashboard/bookings', label: 'Book a Session', icon: '📅' },
 ]
 

@@ -32,6 +32,7 @@ const quickActions = [
   { href: '/dashboard/client/assessment', icon: '🧭', label: 'Assessment', desc: 'Know yourself', color: '#fffbeb', border: '#fcd34d' },
   { href: '/dashboard/client/closure', icon: '💌', label: 'Closure', desc: 'Write it out', color: '#fdf2f8', border: '#f9a8d4' },
   { href: '/dashboard/couples/space', icon: '👥', label: 'Couples', desc: 'Connect together', color: '#eff6ff', border: '#93c5fd' },
+  { href: '/dashboard/seafarer', icon: '⚓', label: 'Seafarer Support', desc: 'Maritime programme', color: '#e8f4f8', border: '#7dd3fc' },
 ]
 
 export default function ClientDashboard() {

@@ -202,6 +202,40 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── MARITIME PROGRAMME ── */}
+      <section className="section" style={{ background: 'linear-gradient(160deg, #0a2a1e 0%, #0d3d2b 55%, #134b64 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div className="deco" style={{ position: 'absolute', top: '-80px', right: '-80px', width: '380px', height: '380px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(29,158,117,0.16) 0%, transparent 70%)' }} />
+        <div className="deco" style={{ position: 'absolute', bottom: '-120px', left: '20%', width: '420px', height: '420px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(17,70,106,0.25) 0%, transparent 70%)' }} />
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 3rem' }}>
+            <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '11px', fontWeight: 700, color: '#5DCAA5', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>⚓ For the maritime industry</p>
+            <h2 className="section-h2" style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: 'white', fontWeight: 600, marginBottom: '1.25rem', lineHeight: 1.25 }}>
+              Anchored Minds — psychosocial support for the people who keep the world moving
+            </h2>
+            <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '15px', color: '#9FE1CB', lineHeight: 1.85, fontWeight: 300 }}>
+              Nearly 2 million seafarers carry 80% of world trade — through long contracts, watch-keeping fatigue, storms, piracy zones, and months away from the people they love. InnerWork extends its trauma-informed care to the maritime industry: a digital psychosocial intervention built for life on board, from the engine room to the families waiting ashore.
+            </p>
+          </div>
+          <div className="grid-4" style={{ marginBottom: '2.5rem' }}>
+            {[
+              { icon: '🛟', title: 'Trauma Counselling', desc: 'Psychological First Aid for critical incidents at sea, grounding tools for flashbacks, private incident logs and structured debriefing with practitioners.' },
+              { icon: '🕯️', title: 'Grief & Family Intervention', desc: 'Rituals for grieving at sea, a digital memorial wall, and a full support pathway for grieving families — from notification to the long tail of loss.' },
+              { icon: '🧭', title: 'Emotional Support Strategies', desc: 'Daily seafarer check-ins, coping strategies for isolation, homesickness and fatigue, and personal self-care plans built for shipboard life.' },
+              { icon: '📞', title: '24/7 Safety Net', desc: 'Direct lines to ISWAN SeafarerHelp, Mission to Seafarers, Sailors\' Society and SA crisis services — independent, confidential, always open.' },
+            ].map((m, i) => (
+              <div key={m.title} className="tool-card" style={{ animation: `slideUp 0.5s ease ${i * 0.08}s both` }}>
+                <div style={{ fontSize: '1.75rem', marginBottom: '0.75rem' }}>{m.icon}</div>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '17px', fontWeight: 600, color: 'white', marginBottom: '5px' }}>{m.title}</p>
+                <p style={{ fontFamily: 'Jost, sans-serif', fontSize: '12px', color: '#9FE1CB', lineHeight: 1.65, fontWeight: 300 }}>{m.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <Link href="/dashboard/seafarer" className="btn-primary" style={{ fontSize: '14px', padding: '13px 30px' }}>Explore the Seafarer Programme →</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── PROCESS ── */}
       <section className="section" style={{ background: '#fafaf8' }}>
         <div className="container" style={{ textAlign: 'center' }}>
