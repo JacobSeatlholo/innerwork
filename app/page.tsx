@@ -77,6 +77,10 @@ export default function LandingPage() {
                 Facilitate Impactful Change.
               </h1>
 
+              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic', fontSize: 'clamp(1.1rem, 2.4vw, 1.4rem)', color: '#5DCAA5', lineHeight: 1.5, marginBottom: '1.5rem', fontWeight: 400, letterSpacing: '0.01em' }}>
+                &ldquo;The higher we fly, the deeper we must ground.&rdquo;
+              </p>
+
               <p className="hero-sub" style={{ fontFamily: 'Jost, sans-serif', fontSize: '16px', color: '#9FE1CB', lineHeight: 1.8, maxWidth: '480px', marginBottom: '2rem', fontWeight: 300 }}>
                 SA&apos;s leading trauma-informed corporate wellness facilitator — social justice, mental health advocacy, and conflict resolution.
               </p>
