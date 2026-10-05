@@ -73,7 +73,7 @@ const sampleTributes = [
 
 export default function GriefSupportPage() {
   const [tab, setTab] = useState<Tab>('seafarer')
-  const [tributes, setTributes] = useState<(typeof sampleTributes)[]>([])
+  const [tributes, setTributes] = useState<(typeof sampleTributes)[number][]>([])
   const [name, setName] = useState('')
   const [vessel, setVessel] = useState('')
   const [relationship, setRelationship] = useState('crewmate')
@@ -124,7 +124,7 @@ export default function GriefSupportPage() {
     })
     setTributes(prev => [{
       id: `local-${Date.now()}`, person_name: name, vessel_name: vessel, relationship,
-      birth_year: birthYear ? Number(birthYear) : undefined, passing_year: passingYear ? Number(passingYear) : undefined,
+      birth_year: birthYear ? Number(birthYear) : 0, passing_year: passingYear ? Number(passingYear) : 0,
       message, visible_to_crew: visible, created_at: new Date().toISOString(),
     }, ...prev])
     setTributeSaved(true)
